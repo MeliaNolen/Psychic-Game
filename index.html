@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Psychic Game</title>
+    </head>
+
+    <body>
+
+        <div id="game">
+            <h1>The Psychic Game</h1>  
+        </div>
+        
+
+        <script>
+        
+            var wins = 0;
+            var losses = 0;
+            var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+
+            document.onkeyup = function(event) {
+                var guessesLeft = 9;
+                var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+                var userGuess = event.key;
+                var userGuessArray = [];
+
+                if ((guessesLeft <= 9) && (guessesLeft > 0)) {
+                    userGuessArray.push(userGuess);
+
+                    if (userGuess === computerGuess) {
+                        wins++;
+                        guessesLeft = 9;
+                    }
+                    else if (userGuess != computerGuess) {
+                        guessesLeft--;
+                    }
+                    
+
+
+                    var html = 
+                        "<p>Guess what letter I'm thinking<p>" +
+                        "<p>Wins: " + wins + "<p>" +
+                        "<p>Losses: " + losses + "<p>" +
+                        "<p>Guesses Left: " + guessesLeft + "<p>" +
+                        "<p>Your Guesses so far: " + userGuessArray + "<p>" ;
+
+                    document.querySelector("#game").innerHTML = html;
+
+
+                }
+                else {guessesLeft = 9}
+
+            }
+       
+        
+        </script>
+    </body>
+</html>
